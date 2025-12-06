@@ -3,11 +3,12 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.permissions import IsAuthenticated
-from rest_framework import status
-from rest_framework.response import Response
 from rest_framework.decorators import api_view
-from .serializers import RegisterSerializer
+from .serializers import RegisterSerializer, UserSerializer, ClientSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework import viewsets, status
+from rest_framework.response import Response
+from .models import User, Client
 from rest_framework_simplejwt.views import TokenObtainPairView
 
 @api_view(['GET'])
@@ -50,3 +51,16 @@ def register(request):
         }, status=status.HTTP_201_CREATED)
     
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+
+class ClientViewSet(viewsets.ModelViewSet):
+    queryset = Client.objects.all()
+    serializer_class = ClientSerializer
+
+    def perform_create(self, serializer):
+        # You can add custom logic here if needed
+        serializer.save()
