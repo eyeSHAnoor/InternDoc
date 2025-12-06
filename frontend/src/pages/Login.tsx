@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Login() {
     const { login } = useAuth();
@@ -12,6 +13,7 @@ export default function Login() {
     const navigate = useNavigate();
     const location = useLocation();
     const from = location.state?.from?.pathname || "/dashboard";
+    const { darkMode, toggleTheme } = useTheme();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -41,11 +43,19 @@ export default function Login() {
             if (res.ok) {
                 localStorage.setItem("access_token", data.access);
                 localStorage.setItem("refresh_token", data.refresh);
-                login(username);
+
+                // fetch current user info after login
+                const userRes = await fetch("http://127.0.0.1:8000/api/current_user/", {
+                    headers: { Authorization: `Bearer ${data.access}` }
+                });
+                const userData = await userRes.json();
+
+                login(userData.username, userData.email, data.access, data.refresh);
                 navigate(from, { replace: true });
             } else {
                 setMessage(data.detail || "Login failed");
             }
+
         } catch (err) {
             clearInterval(progressInterval);
             setLoading(false);
@@ -55,54 +65,86 @@ export default function Login() {
     };
 
     return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4 relative">
+        <div className="min-h-screen flex items-center justify-center p-4 relative">
             {/* Loading bar */}
             {loading && (
                 <div
-                    className="fixed top-0 left-0 h-1 bg-green-500 z-50 transition-all"
+                    className="fixed top-0 left-0 h-1 bg-gradient-l-to-r from-blue-500 to-purple-600 z-50 transition-all duration-300 ease-out"
                     style={{ width: `${progress}%` }}
                 />
             )}
 
-            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
-                <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+            <div className="w-full max-w-md">
 
-                {message && (
-                    <p className="text-red-500 text-center mb-4">{message}</p>
-                )}
+                <div className="bg-white w-[608px] h-[394px] rounded-2xl shadow-xl p-8 border border-gray-200">
+                    <h2 className="text-3xl font-bold text-gray-900 text-center mb-2">Welcome</h2>
+                    <p className="text-gray-500 text-center mb-12">Great to see you! please enter your account details</p>
 
-                <form className="flex flex-col gap-4" onSubmit={handleSubmit}>
-                    <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                        required
-                        className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
-                    <input
-                        type="password"
-                        placeholder="Password"
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        required
-                        className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    />
+                    {message && (
+                        <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-md mb-6 text-center">
+                            {message}
+                        </div>
+                    )}
 
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600 transition font-semibold"
-                    >
-                        {loading ? "Logging in..." : "Login"}
-                    </button>
+                    <form className="flex flex-col gap-5" onSubmit={handleSubmit}>
+                        <div>
+                            <input
+                                id="username"
+                                type="text"
+                                placeholder="Username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                                className="w-full h-[45px] px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                            />
+                        </div>
 
-                    <button
-                        type="button"
-                        className="bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400 transition font-semibold"
-                    >
-                        Sign Up
-                    </button>
-                </form>
+                        <div>
+                            <input
+                                id="password"
+                                type="password"
+                                placeholder="Password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                                className="w-full h-[45px] px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all placeholder:text-gray-400"
+                            />
+                        </div>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="h-[40px] text-gray-600  bg-green-100  py-1 rounded-md transition-all duration-300 font-semibold text-sm shadow-md hover:shadow-lg disabled:opacity-70 disabled:cursor-not-allowed mt-2"
+                        >
+                            {loading ? (
+                                <span className="flex items-center justify-center">
+                                    <svg className="animate-spin h-5 w-5 mr-3 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                    Logging in...
+                                </span>
+                            ) : (
+                                "Login"
+                            )}
+                        </button>
+
+                        <div className="relative my-1 text-center">
+                            <p className="text-md">
+                                Don't have an account?{" "}
+                                <button
+                                    type="button"
+                                    onClick={() => navigate("/signup")}
+                                    className=" font-medium transition-colors hover:underline"
+                                >
+                                    Sign Up
+                                </button>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+
             </div>
         </div>
     );
