@@ -4,6 +4,7 @@ body {
     color: #1f2937;
     transition: all 0.3s ease;
     font-family: 'Inter', sans-serif;
+    /* font-family: "'Plus Jakarta Sans', sans-serif" */
 }
 
 /* Dark mode */
@@ -52,7 +53,9 @@ body {
 }
 
 .bg-green {
+    /* background: rgba(201, 248, 193, 1); */
     background: rgba(201, 248, 193, 1);
+
 }
 
 .text-green {
@@ -67,3 +70,32 @@ body {
 .text-green-hover {
     color: rgba(0, 100, 0, 1);
 }
+
+.bg-purple {
+    background: rgba(140, 123, 247, 0.1);
+    color: rgba(140, 123, 247, 1);
+    font-size: smaller
+}
+
+
+.bg-green-tag {
+    background: rgba(57, 223, 43, 0.1);
+    color: rgba(48, 203, 34, 1);
+    font-size: smaller
+}
+
+.bg-red {
+    background: rgba(249, 107, 107, 0.1);
+    color: rgba(249, 107, 107, 1);
+    font-size: smaller;
+
+}
+
+.bg-yellow {
+    background: rgba(255, 239, 231, 1);
+    color: rgba(255, 150, 0, 1);
+    font-size: smaller;
+
+}
+
+/* .text-purple {} */

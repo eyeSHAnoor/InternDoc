@@ -81,7 +81,7 @@ const Table: React.FC<TableProps> = ({
     const mobileColumns = getMobileColumns();
 
     return (
-        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:p-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4">
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-800">{title}</h1>
@@ -212,7 +212,7 @@ const Table: React.FC<TableProps> = ({
             )}
 
             {/* Desktop Table View */}
-            <div className="p-2 hidden md:block bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
+            <div className="p-2 px-8 hidden md:block bg-white rounded-xl shadow-sm overflow-hidden border border-gray-200">
                 <div className="my-4 relative w-1/3">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <svg
@@ -251,26 +251,32 @@ const Table: React.FC<TableProps> = ({
                                 ))}
                                 {dropdownActions.length > 0 && (
                                     <th className="px-4 lg:px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                        Actions
                                     </th>
                                 )}
                             </tr>
                         </thead>
                         <tbody className="bg-white divide-y divide-gray-200">
                             {data.map((row, index) => (
-                                <tr key={row.id || index} className="hover:bg-gray-50 transition-colors duration-150">
-                                    {columns.map((column) => (
+                                <tr
+                                    key={row.id || index}
+                                    className="hover:bg-gray-50 transition-colors duration-150"
+                                >
+                                    {columns.map((column, colIndex) => (
                                         <td
                                             key={`${row.id || index}-${column.key}`}
-                                            className={`px-4 lg:px-6 py-4 ${column.hideOnMobile ? 'hidden lg:table-cell' : ''}`}
+                                            className={`
+                                               px-4 lg:px-6 py-4 text-sm
+                                               ${column.hideOnMobile ? 'hidden lg:table-cell' : ''}
+                                               border-r border-gray-200
+                                             `}
                                         >
-                                            <div className="text-sm">
-                                                {column.render ? column.render(row[column.key], row) : row[column.key]}
-                                            </div>
+                                            {column.render ? column.render(row[column.key], row) : row[column.key]}
                                         </td>
                                     ))}
+
+                                    {/* Actions / Three-dot menu aligned to right */}
                                     {dropdownActions.length > 0 && (
-                                        <td className="px-4 lg:px-6 py-4 whitespace-nowrap text-right text-sm font-medium relative dropdown-container">
+                                        <td className="px-4 lg:px-0 py-4 text-sm font-medium text-right relative">
                                             <button
                                                 onClick={(e) => {
                                                     e.stopPropagation();
@@ -288,10 +294,11 @@ const Table: React.FC<TableProps> = ({
                                                         strokeLinecap="round"
                                                         strokeLinejoin="round"
                                                         strokeWidth={2}
-                                                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z"
+                                                        d="M12 5v.01M12 12v.01M12 19v.01"
                                                     />
                                                 </svg>
                                             </button>
+
                                             {openDropdownId === (row.id || index.toString()) && (
                                                 <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded-lg shadow-lg z-10 overflow-hidden">
                                                     {dropdownActions.map((action, actionIndex) => (
@@ -311,6 +318,9 @@ const Table: React.FC<TableProps> = ({
                                 </tr>
                             ))}
                         </tbody>
+
+
+
                     </table>
                     {data.length === 0 && (
                         <div className="text-center py-8 text-gray-500">

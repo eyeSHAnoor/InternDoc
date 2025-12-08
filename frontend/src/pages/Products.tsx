@@ -21,41 +21,48 @@ const products: Product[] = [
 ];
 
 const StatusBadge: React.FC<{ status: Product["status"] }> = ({ status }) => {
-    const color = status === "Removed" ? "bg-red-100 text-red-500" : "bg-yellow-100 text-yellow-500";
-    return <span className={`px-2 py-1 rounded text-xs font-semibold ${color}`}>{status}</span>;
+    const color = status === "Removed" ? "bg-red" : "bg-yellow";
+    return <span className={`w-[95px] h-[34px] px-2 py-1 rounded text-xs font-semibold ${color}`}>{status}</span>;
 };
 
-const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
-    <div className="border rounded-xl shadow-xs p-4 flex flex-col justify-between shadow-sm h-full">
-        <img
-            src={product.image}
-            alt={product.title}
-            className="w-full h-32 sm:h-36 md:h-64 object-cover rounded-xl"
-        />
-        <div className="mt-3">
-            <h3 className="font-semibold text-sm sm:text-base">{product.title}</h3>
-            <a
-                href={product.link}
-                className="text-xs sm:text-sm text-gray-400 truncate block hover:text-gray-600 transition-colors"
-                target="_blank"
-                rel="noopener noreferrer"
-            >
-                {product.link}
-            </a>
-            <div className="mt-2">
-                {/* <StatusBadge status={product.status} /> */}
+const ProductCard: React.FC<{ product: Product }> = ({ product }) => {
+
+    return (
+        <div className="w-[270px] h-[386px] border rounded-xl shadow-xs p-4 flex flex-col justify-between shadow-sm h-full">
+            <div className="relative w-full h-[243px] sm:h-36 md:h-64">
+                <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-full h-full object-cover rounded-xl"
+                />
+                <div className="absolute top-2 left-2">
+                    <span className={`px-2 py-1 rounded text-xs font-semibold bg-gray-500/20 text-white`}>
+                        {product.status}
+                    </span>
+                </div>
             </div>
-            <div className="flex flex-wrap justify-between gap-5 mt-3">
-                <button className="bg-black text-white px-2 py-1.5 text-xs sm:text-sm rounded hover:bg-gray-800 transition-colors flex-1 min-w-[80px]">
-                    Source
-                </button>
-                <button className="bg-green-100 text-green-600 px-2 py-1.5 text-xs sm:text-sm rounded hover:bg-green-200 transition-colors flex-1 min-w-[80px]">
-                    View Details
-                </button>
+            <div className="mt-3 flex flex-col justify-between flex-1">
+                <h3 className="font-semibold text-sm sm:text-base">{product.title}</h3>
+                <a
+                    href={product.link}
+                    className="text-xs sm:text-sm text-gray-400 truncate block hover:text-gray-600 transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    {product.link}
+                </a>
+                <div className="flex flex-wrap justify-between gap-5 mt-3 items-end">
+                    <button className="w-[107px] h-[34px] bg-green text-gray-700 px-[12px] py-[6px] text-xs sm:text-sm rounded hover:bg-green-300 transition-colors flex-1 min-w-[80px]">
+                        View Detail
+                    </button>
+                    <button className="w-[60px] h-[26px] bg-black text-white py-[2px] text-[14px] sm:text-sm rounded-lg transition-colors flex-1 min-w-[80px]">
+                        Source
+                    </button>
+                </div>
             </div>
         </div>
-    </div>
-);
+    );
+};
 
 const ProductListItem: React.FC<{ product: Product }> = ({ product }) => (
     <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b py-3 px-2 sm:px-0 gap-3 sm:gap-4">
@@ -81,10 +88,10 @@ const ProductListItem: React.FC<{ product: Product }> = ({ product }) => (
             </div>
         </div>
         <div className="flex flex-wrap gap-2 sm:flex-nowrap sm:gap-3 self-start sm:self-center">
-            <button className="bg-black text-white px-3 py-2 text-xs sm:text-sm rounded hover:bg-gray-800 transition-colors flex-1 sm:flex-none min-w-[80px]">
+            <button className="w-[101px] h-[54px] bg-black text-white px-3 py-2 font-semibold text-xs sm:text-sm rounded-lg hover:bg-gray-800 transition-colors flex-1 sm:flex-none min-w-[80px]">
                 Source
             </button>
-            <button className="bg-green-100 text-green-600 px-3 py-2 text-xs sm:text-sm rounded hover:bg-green-200 transition-colors flex-1 sm:flex-none min-w-[80px]">
+            <button className="w-[160px] h-[54px] bg-green text-gray-700 px-3 py-2 text-xs font-semibold sm:text-sm rounded-lg hover:bg-green-200 transition-colors flex-1 sm:flex-none min-w-[80px]">
                 View Details
             </button>
         </div>
@@ -95,18 +102,18 @@ const Products: React.FC = () => {
     const [view, setView] = useState<"grid" | "list">("list");
 
     return (
-        <div className="p-4 sm:p-6">
+        <div className="px-4">
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h2 className="text-lg sm:text-xl font-semibold">Products</h2>
                 <div className="flex gap-2 self-start sm:self-center">
                     <button
-                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "grid" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
+                        className={`px-3 py-1.5 text-xs sm:text-sm rounded-lg font-semibold text-gray-700 transition-colors ${view === "grid" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
                         onClick={() => setView("grid")}
                     >
                         Grid View
                     </button>
                     <button
-                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "list" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
+                        className={`px-3 py-1.5 text-xs sm:text-sm rounded-lg font-semibold text-gray-700 transition-colors ${view === "list" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
                         onClick={() => setView("list")}
                     >
                         List View

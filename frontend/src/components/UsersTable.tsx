@@ -21,10 +21,6 @@ const UsersTable: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const projects: Project[] = [
-        { id: '1', user: { name: 'Philip Gouse', email: 'philip@example.com', avatar: '/users/user1.png' }, projectName: 'Project Alpha', projectRevenue: '€ 200', status: 'In Negotiation', statusColor: 'bg-purple-100 text-purple-800 border-purple-200' },
-        { id: '2', user: { name: 'Anna Smith', email: 'anna@example.com', avatar: '/users/user2.png' }, projectName: 'Project Beta', projectRevenue: '€ 350', status: 'In Negotiation', statusColor: 'bg-purple-100 text-purple-800 border-purple-200' },
-        { id: '3', user: { name: 'John Doe', email: 'john@example.com', avatar: '/users/user3.png' }, projectName: 'Project Gamma', projectRevenue: '€ 500', status: 'Closed - Won', statusColor: 'bg-green-100 text-green-800 border-green-200' },
-        { id: '4', user: { name: 'Mary Jane', email: 'mary@example.com', avatar: '/users/user4.png' }, projectName: 'Project Delta', projectRevenue: '€ 150', status: 'Closed - Lost', statusColor: 'bg-red-100 text-red-800 border-red-200' },
         // { id: '5', user: { name: 'David Brown', email: 'david@example.com', avatar: '/users/user1.png' }, projectName: 'Project Epsilon', projectRevenue: '€ 700', status: 'Closed - Won', statusColor: 'bg-green-100 text-green-800 border-green-200' },
     ];
 

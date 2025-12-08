@@ -12,72 +12,74 @@ import Admins from "./pages/Admins";
 
 function App() {
   return (
-    <AuthProvider>
-      <ThemeProvider>
-        <BrowserRouter>
-          <Routes>
+    <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+      <AuthProvider>
+        <ThemeProvider>
+          <BrowserRouter>
+            <Routes>
 
-            {/* Login WITHOUT layout */}
-            <Route
-              path="/login"
-              element={
-                <PublicRoute>
-                  <Login />
-                </PublicRoute>
-              }
-            />
-            <Route path="/signup" element={<PublicRoute> <Signup /> </PublicRoute>} />
+              {/* Login WITHOUT layout */}
+              <Route
+                path="/login"
+                element={
+                  <PublicRoute>
+                    <Login />
+                  </PublicRoute>
+                }
+              />
+              <Route path="/signup" element={<PublicRoute> <Signup /> </PublicRoute>} />
 
-            {/* Dashboard WITH layout */}
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute>
-                  <Layout>
-                    <Dashboard />
-                  </Layout>
-                </PrivateRoute>
-              }
-            />
+              {/* Dashboard WITH layout */}
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute>
+                    <Layout>
+                      <Dashboard />
+                    </Layout>
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/products"
-              element={
-                <PrivateRoute>
-                  <Layout>
-                    <Products />
-                  </Layout>
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/products"
+                element={
+                  <PrivateRoute>
+                    <Layout>
+                      <Products />
+                    </Layout>
+                  </PrivateRoute>
+                }
+              />
 
-            {/* Users WITH layout */}
-            <Route
-              path="/users"
-              element={
-                <PrivateRoute>
-                  <Layout>
-                    <Users />
-                  </Layout>
-                </PrivateRoute>
-              }
-            />
+              {/* Users WITH layout */}
+              <Route
+                path="/users"
+                element={
+                  <PrivateRoute>
+                    <Layout>
+                      <Users />
+                    </Layout>
+                  </PrivateRoute>
+                }
+              />
 
-            <Route
-              path="/admins"
-              element={
-                <PrivateRoute>
-                  <Layout>
-                    <Admins />
-                  </Layout>
-                </PrivateRoute>
-              }
-            />
+              <Route
+                path="/admins"
+                element={
+                  <PrivateRoute>
+                    <Layout>
+                      <Admins />
+                    </Layout>
+                  </PrivateRoute>
+                }
+              />
 
-          </Routes>
-        </BrowserRouter>
-      </ThemeProvider>
-    </AuthProvider>
+            </Routes>
+          </BrowserRouter>
+        </ThemeProvider>
+      </AuthProvider>
+    </div>
   );
 }
 

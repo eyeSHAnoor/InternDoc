@@ -57,11 +57,11 @@ const StatCard: React.FC<StatCardProps> = ({
     const finalIconType = determineIconType();
 
     return (
-        <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow duration-200 h-full flex flex-col sm:flex-row gap-3 sm:gap-4">
+        <div className="flex justify-center items-center bg-white rounded-xl shadow-sm border border-gray-200 p-3 hover:shadow-md transition-shadow duration-200 h-full flex flex-col sm:flex-row gap-3 sm:gap-4">
             {getIcon(finalIconType)}
 
             <div className="flex-1 min-w-0">
-                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2 flex-wrap">
+                <div className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 flex-wrap">
                     <h3 className="text-sm sm:text-md font-semibold text-gray-900 truncate">
                         {title}
                     </h3>

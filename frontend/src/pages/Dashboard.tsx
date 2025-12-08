@@ -33,7 +33,7 @@ const Dashboard: React.FC = () => {
     ];
 
     return (
-        <div className="p-4 md:p-6">
+        <div className="p-3">
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
@@ -47,7 +47,7 @@ const Dashboard: React.FC = () => {
                 {/* Ready to get started card */}
                 <div className="bg-white shadow rounded p-4 sm:p-6 flex flex-col justify-between lg:col-span-2">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                        <img src="/dashboard/ready-illustration.png" alt="Ready" className="w-32 h-32 self-center sm:self-start" />
+                        <img src="/dashboard/ready-illustration.png" alt="Ready" className="w-[216px] h-[189px] self-center sm:self-start" />
                         <div className="text-center sm:text-left">
                             <h2 className="font-semibold text-lg">Ready to get started?</h2>
                             <p className="text-gray-500 text-sm mt-1">Take advantage of our platform and start onboarding affiliates today!</p>

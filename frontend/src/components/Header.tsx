@@ -25,11 +25,11 @@ const Header: React.FC<HeaderProps> = ({ toggleSidebar }) => {
     }, []);
 
     return (
-        <header className="sticky top-0 z-20  border-b border-gray-200 bg-white  w-full transition-colors">
-            <div className="px-6 py-4 flex items-center justify-between">
+        <header className="h-[72px] sticky top-0 z-20  border-b border-gray-200 bg-white  w-full transition-colors">
+            <div className="px-6 py-1 flex items-center justify-between">
 
                 {/* Hamburger Button */}
-                <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+                <button onClick={toggleSidebar} className="p-2 rounded-lg hover:bg-gray-100 transition">
                     <FiMenu size={22} className="" />
                 </button>
 

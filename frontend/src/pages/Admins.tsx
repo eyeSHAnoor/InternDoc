@@ -30,11 +30,11 @@ const Admins: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const projects: Project[] = [
-        { id: '1', user: { name: 'Philip Gouse', email: 'philip@example.com', avatar: '/users/user1.png' }, projectName: 'Project Alpha', projectRevenue: '200', status: 'Active', statusColor: 'bg-green-100 text-green-800 border-green-200', type: 'Remote' },
-        { id: '2', user: { name: 'Philip Godzilla', email: 'godzilla@example.com', avatar: '/users/user2.png' }, projectName: 'Project Beta', projectRevenue: '350', status: 'Disabled', statusColor: 'bg-red-100 text-red-800 border-red-200', type: 'In Person' },
-        { id: '3', user: { name: 'Anna Smith', email: 'anna@example.com', avatar: '/users/user3.png' }, projectName: 'Project Gamma', projectRevenue: '500', status: 'Active', statusColor: 'bg-green-100 text-green-800 border-green-200', type: 'Remote' },
-        { id: '4', user: { name: 'John Doe', email: 'john@example.com', avatar: '/users/user4.png' }, projectName: 'Project Delta', projectRevenue: '150', status: 'Disabled', statusColor: 'bg-red-100 text-red-800 border-red-200', type: 'In Person' },
-        { id: '5', user: { name: 'Dol Marcus', email: 'marcus@example.com', avatar: '/users/user3.png' }, projectName: 'Project Epsilon', projectRevenue: '700', status: 'Disabled', statusColor: 'bg-red-100 text-red-800 border-red-200', type: 'Remote' },
+        { id: '1', user: { name: 'Philip Gouse', email: 'philip@example.com', avatar: '/users/user1.png' }, projectName: 'Project Alpha', projectRevenue: '200', status: 'Active', statusColor: 'bg-green-tag', type: 'Remote' },
+        { id: '2', user: { name: 'Philip Godzilla', email: 'godzilla@example.com', avatar: '/users/user2.png' }, projectName: 'Project Beta', projectRevenue: '350', status: 'Disabled', statusColor: 'bg-red', type: 'In Person' },
+        { id: '3', user: { name: 'Anna Smith', email: 'anna@example.com', avatar: '/users/user3.png' }, projectName: 'Project Gamma', projectRevenue: '500', status: 'Active', statusColor: 'bg-green-tag', type: 'Remote' },
+        { id: '4', user: { name: 'John Doe', email: 'john@example.com', avatar: '/users/user4.png' }, projectName: 'Project Delta', projectRevenue: '150', status: 'Disabled', statusColor: 'bg-red', type: 'In Person' },
+        { id: '5', user: { name: 'Dol Marcus', email: 'marcus@example.com', avatar: '/users/user3.png' }, projectName: 'Project Epsilon', projectRevenue: '700', status: 'Disabled', statusColor: 'bg-red', type: 'Remote' },
     ];
 
     // Aggregate projects by user
@@ -118,8 +118,8 @@ const Admins: React.FC = () => {
             label: 'Type',
             render: (project: Project) => (
                 <span className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${project.type === 'Remote'
-                    ? 'bg-purple-100 text-purple-800 border border-purple-200'
-                    : 'bg-green-100 text-green-800 border-green-200'
+                    ? 'bg-purple'
+                    : 'bg-green-tag'
                     }`}>
                     {project.type}
                 </span>

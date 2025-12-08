@@ -27,7 +27,7 @@ const Sidebar: React.FC<SidebarProps> = ({ sidebarOpen }) => {
 
     return (
         <aside
-            className={`fixed left-0 top-0 h-full bg-white border-r transition-all duration-300 ${sidebarOpen ? 'w-64' : 'w-0 overflow-hidden'
+            className={`fixed left-0 top-0 h-full bg-white border-r transition-all duration-300 ${sidebarOpen ? 'w-[250px]' : 'w-0 overflow-hidden'
                 }`}
         >
             <div className="p-6">
