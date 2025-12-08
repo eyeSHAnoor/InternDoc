@@ -50,3 +50,20 @@ body {
 .dark .placeholder-gray-400::placeholder {
     color: #9ca3af;
 }
+
+.bg-green {
+    background: rgba(201, 248, 193, 1);
+}
+
+.text-green {
+    color: rgba(201, 248, 193, 1);
+
+}
+
+.bg-green-hover {
+    background-color: rgba(150, 230, 150, 1);
+}
+
+.text-green-hover {
+    color: rgba(0, 100, 0, 1);
+}

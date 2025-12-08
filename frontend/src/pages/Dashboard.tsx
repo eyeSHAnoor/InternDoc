@@ -3,11 +3,15 @@ import StatCard from '../components/StatCard';
 import ChartCard from '../components/ChartCard';
 import UserList from '../components/UserList';
 import LineChartCard from '../components/LineChartCard';
+import TopAdminCard from '../components/TopAdminCard';
 
 interface User {
     name: string;
     company?: string;
     role?: string;
+    color?: string;
+    iconColor?: string
+    listing?: string
 }
 
 const Dashboard: React.FC = () => {
@@ -16,13 +20,13 @@ const Dashboard: React.FC = () => {
     const userLabels: string[] = ['12 Aug', '13 Aug', '14 Aug', '15 Aug', '16 Aug', '17 Aug', '18 Aug'];
     const revenueData: number[] = [20, 25, 30, 28, 35, 40];
     const revenueLabels: string[] = ['12 Jan', '13 Jan', '14 Jan', '15 Jan', '16 Jan', '17 Jan'];
-
     const topUsers: User[] = [
-        { name: 'Rose Meadows', company: 'Company name' },
-        { name: 'Madden Esparza', company: 'Company name' },
-        { name: 'Edison Norman', company: 'Company name' },
-        { name: 'Terrance Conner', company: 'Company name' },
+        { name: 'Rose Meadows', company: 'Company name', listing: "Listing #2404", color: 'bg-green-50', iconColor: '#85BA49' },
+        { name: 'Madden Esparza', company: 'Company name', listing: "Listing #2404", color: 'bg-blue-50', iconColor: '#3B82F6' },
+        { name: 'Edison Norman', company: 'Company name', listing: "Listing #2404", color: 'bg-yellow-50', iconColor: '#FACC15' },
+        { name: 'Terrance Conner', company: 'Company name', listing: "Listing #2404", color: 'bg-red-50', iconColor: '#EF4444' },
     ];
+
 
     const topAdmins: User[] = [
         { name: 'Carl Meadows', role: 'Admin' },
@@ -33,7 +37,7 @@ const Dashboard: React.FC = () => {
             {/* Header */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h1 className="text-xl sm:text-2xl font-bold">Dashboard</h1>
-                <button className="bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg transition-colors duration-200 font-medium self-start sm:self-center">
+                <button className="bg-green hover:bg-green-600 text-gray-700 text-sm px-4 py-2 rounded-lg transition-colors duration-200 font-medium self-start sm:self-center">
                     + Add Revenue
                 </button>
             </div>
@@ -43,7 +47,7 @@ const Dashboard: React.FC = () => {
                 {/* Ready to get started card */}
                 <div className="bg-white shadow rounded p-4 sm:p-6 flex flex-col justify-between lg:col-span-2">
                     <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-                        <img src="/ready-illustration.png" alt="Ready" className="w-16 h-16 self-center sm:self-start" />
+                        <img src="/dashboard/ready-illustration.png" alt="Ready" className="w-32 h-32 self-center sm:self-start" />
                         <div className="text-center sm:text-left">
                             <h2 className="font-semibold text-lg">Ready to get started?</h2>
                             <p className="text-gray-500 text-sm mt-1">Take advantage of our platform and start onboarding affiliates today!</p>
@@ -70,7 +74,7 @@ const Dashboard: React.FC = () => {
                         title="52"
                         subtitle="Closed Offers"
                         change="+20%"
-                        iconType="offers"
+                        iconType="closed"
                     />
                     <StatCard
                         title="125"
@@ -107,7 +111,12 @@ const Dashboard: React.FC = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-6">
                     <UserList title="Top 5 Users" users={topUsers} type="users" />
                     <UserList title="Top 5 Fake Sellers" users={topUsers} type="users" />
-                    <UserList title="Top Admin" users={topAdmins} type="admins" />
+                    {/* <UserList title="Top Admin" users={topAdmins} type="admins" /> */}
+                    <TopAdminCard
+                        name="Carl Meadows"
+                        noticesReviewed={23353}
+                        avatarUrl="/dashboard/topAdmin.png" // optional
+                    />
                 </div>
             </div>
         </div>

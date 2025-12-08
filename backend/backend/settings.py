@@ -23,6 +23,7 @@ INSTALLED_APPS = [
 
     # Third-party apps
     'rest_framework',
+    'django_filters',
     'corsheaders',
 
     # Local apps
@@ -44,6 +45,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
+
+FIREBASE_CONFIG = {
+    'PROJECT_ID': os.getenv('FIREBASE_PROJECT_ID'),
+    'PRIVATE_KEY': os.getenv('FIREBASE_PRIVATE_KEY'),
+    'CLIENT_EMAIL': os.getenv('FIREBASE_CLIENT_EMAIL'),
+}
 
 # -----------------------------
 # CORS CONFIG

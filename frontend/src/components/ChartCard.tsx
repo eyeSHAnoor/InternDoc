@@ -97,7 +97,7 @@ const ChartCard: React.FC<ChartCardProps> = ({
                     title={stats.closedOffers.currency + stats.closedOffers.value}
                     subtitle="Closed Offers"
                     change={`+${stats.closedOffers.growth}%`}
-                    iconType="offers"
+                    iconType="closed"
                 />
             </div>
         </div>

@@ -81,7 +81,7 @@ const Table: React.FC<TableProps> = ({
     const mobileColumns = getMobileColumns();
 
     return (
-        <div className="max-w-7xl mx-auto mt-4 md:mt-8 px-3 sm:px-4 md:p-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 md:p-4">
             {/* Header Section */}
             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
                 <h1 className="text-xl sm:text-2xl font-bold text-gray-800">{title}</h1>
@@ -115,7 +115,7 @@ const Table: React.FC<TableProps> = ({
                     {onAddClick && (
                         <button
                             onClick={onAddClick}
-                            className="bg-green-500 hover:bg-green-600 text-white text-sm px-4 py-2 rounded-lg transition-colors duration-200 font-medium whitespace-nowrap"
+                            className="bg-green hover:bg-green-600 text-gray-700 text-sm px-4 py-2 rounded-lg transition-colors duration-200 font-medium whitespace-nowrap"
                         >
                             {addButtonText}
                         </button>

@@ -10,12 +10,14 @@ interface Product {
 }
 
 const products: Product[] = [
-    { id: 1, title: "Product A", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Removed" },
-    { id: 2, title: "Product B", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Removed" },
-    { id: 3, title: "Product C", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Reminder Sent" },
-    { id: 4, title: "Product D", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Removed" },
-    { id: 5, title: "Product E", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Removed" },
-    { id: 6, title: "Product F", link: "https://yourproducturlgoeshere1122.com", image: "/product.jpg", status: "Removed" },
+    { id: 1, title: "Product A", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod1.png", status: "Removed" },
+    { id: 2, title: "Product B", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod2.png", status: "Removed" },
+    { id: 3, title: "Product C", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod3.png", status: "Reminder Sent" },
+    { id: 4, title: "Product D", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod4.png", status: "Removed" },
+    { id: 5, title: "Product E", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod5.png", status: "Removed" },
+    { id: 6, title: "Product F", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod6.png", status: "Removed" },
+    { id: 6, title: "Product F", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod7.png", status: "Removed" },
+    { id: 6, title: "Product F", link: "https://yourproducturlgoeshere1122.com", image: "/products/prod8.png", status: "Removed" },
 ];
 
 const StatusBadge: React.FC<{ status: Product["status"] }> = ({ status }) => {
@@ -24,11 +26,11 @@ const StatusBadge: React.FC<{ status: Product["status"] }> = ({ status }) => {
 };
 
 const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
-    <div className="border rounded-lg p-4 flex flex-col justify-between shadow-sm h-full">
+    <div className="border rounded-xl shadow-xs p-4 flex flex-col justify-between shadow-sm h-full">
         <img
             src={product.image}
             alt={product.title}
-            className="w-full h-32 sm:h-36 md:h-40 object-cover rounded"
+            className="w-full h-32 sm:h-36 md:h-64 object-cover rounded-xl"
         />
         <div className="mt-3">
             <h3 className="font-semibold text-sm sm:text-base">{product.title}</h3>
@@ -41,13 +43,13 @@ const ProductCard: React.FC<{ product: Product }> = ({ product }) => (
                 {product.link}
             </a>
             <div className="mt-2">
-                <StatusBadge status={product.status} />
+                {/* <StatusBadge status={product.status} /> */}
             </div>
-            <div className="flex flex-wrap gap-2 mt-3">
-                <button className="bg-black text-white px-3 py-1.5 text-xs sm:text-sm rounded hover:bg-gray-800 transition-colors flex-1 min-w-[80px]">
+            <div className="flex flex-wrap justify-between gap-5 mt-3">
+                <button className="bg-black text-white px-2 py-1.5 text-xs sm:text-sm rounded hover:bg-gray-800 transition-colors flex-1 min-w-[80px]">
                     Source
                 </button>
-                <button className="bg-green-100 text-green-600 px-3 py-1.5 text-xs sm:text-sm rounded hover:bg-green-200 transition-colors flex-1 min-w-[80px]">
+                <button className="bg-green-100 text-green-600 px-2 py-1.5 text-xs sm:text-sm rounded hover:bg-green-200 transition-colors flex-1 min-w-[80px]">
                     View Details
                 </button>
             </div>
@@ -98,13 +100,13 @@ const Products: React.FC = () => {
                 <h2 className="text-lg sm:text-xl font-semibold">Products</h2>
                 <div className="flex gap-2 self-start sm:self-center">
                     <button
-                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "grid" ? "bg-black text-white" : "bg-gray-100 hover:bg-gray-200"}`}
+                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "grid" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
                         onClick={() => setView("grid")}
                     >
                         Grid View
                     </button>
                     <button
-                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "list" ? "bg-black text-white" : "bg-gray-100 hover:bg-gray-200"}`}
+                        className={`px-3 py-1.5 text-xs sm:text-sm rounded transition-colors ${view === "list" ? "bg-green text-gray-700" : "bg-gray-100 hover:bg-gray-200"}`}
                         onClick={() => setView("list")}
                     >
                         List View

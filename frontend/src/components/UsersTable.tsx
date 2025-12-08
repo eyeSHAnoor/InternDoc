@@ -1,6 +1,6 @@
-// pages/Users.tsx
+// components/UsersTable.tsx - Using the reusable Table component
 import React, { useState } from 'react';
-import Table, { TableColumn } from '../components/Table';
+import Table, { TableColumn } from './Table';
 
 interface User {
     name: string;
@@ -17,7 +17,7 @@ interface Project {
     statusColor: string;
 }
 
-const Users: React.FC = () => {
+const UsersTable: React.FC = () => {
     const [searchQuery, setSearchQuery] = useState('');
 
     const projects: Project[] = [
@@ -25,6 +25,7 @@ const Users: React.FC = () => {
         { id: '2', user: { name: 'Anna Smith', email: 'anna@example.com', avatar: '/users/user2.png' }, projectName: 'Project Beta', projectRevenue: '€ 350', status: 'In Negotiation', statusColor: 'bg-purple-100 text-purple-800 border-purple-200' },
         { id: '3', user: { name: 'John Doe', email: 'john@example.com', avatar: '/users/user3.png' }, projectName: 'Project Gamma', projectRevenue: '€ 500', status: 'Closed - Won', statusColor: 'bg-green-100 text-green-800 border-green-200' },
         { id: '4', user: { name: 'Mary Jane', email: 'mary@example.com', avatar: '/users/user4.png' }, projectName: 'Project Delta', projectRevenue: '€ 150', status: 'Closed - Lost', statusColor: 'bg-red-100 text-red-800 border-red-200' },
+        // { id: '5', user: { name: 'David Brown', email: 'david@example.com', avatar: '/users/user1.png' }, projectName: 'Project Epsilon', projectRevenue: '€ 700', status: 'Closed - Won', statusColor: 'bg-green-100 text-green-800 border-green-200' },
     ];
 
     const filteredProjects = projects.filter(
@@ -111,20 +112,18 @@ const Users: React.FC = () => {
     ];
 
     return (
-        <div className="p-6">
-            <Table
-                data={filteredProjects}
-                columns={columns}
-                title="Users"
-                searchPlaceholder="Search by name, email, or project..."
-                addButtonText="+ Add New User"
-                onAddClick={() => console.log('Add new user')}
-                onSearch={setSearchQuery}
-                emptyStateMessage="No users found matching your search."
-                dropdownActions={dropdownActions}
-            />
-        </div>
+        <Table
+            data={filteredProjects}
+            columns={columns}
+            title="Users"
+            searchPlaceholder="Search by name, email, or project..."
+            addButtonText="+ Add New User"
+            onAddClick={() => console.log('Add new user')}
+            onSearch={setSearchQuery}
+            emptyStateMessage="No users found matching your search."
+            dropdownActions={dropdownActions}
+        />
     );
 };
 
-export default Users;
+export default UsersTable;
